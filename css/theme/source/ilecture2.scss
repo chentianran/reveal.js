@@ -1,0 +1,178 @@
+/**
+ * A simple theme for reveal.js presentations, similar
+ * to the default theme. The accent color is brown.
+ *
+ * This theme is Copyright (C) 2012-2013 Owen Versteeg, http://owenversteeg.com - it is MIT licensed.
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+$mainFontSize: 32px;
+$mainColor: #000;
+$headingFont: 'League Gothic', Impact, sans-serif;
+// $headingFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+$headingColor: #8B3E5D;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$heading1Size: 2.5em;
+$heading2Size: 1.75em;
+$heading3Size: 1.25em;
+$heading4Size: 1.00em;
+$backgroundColor: #FFFFFF;
+$linkColor: #EE8B73;
+$linkColorHover: darken( $linkColor, 20% );
+$selectionBackgroundColor: #412F49;
+
+// Vertical spacing between blocks of text
+$blockMargin: 10px;
+
+.reveal a {
+  line-height: 1.2em;
+}
+
+.reveal .slides section,
+.reveal .slides section > section {
+  line-height: 1.2;
+  font-weight: inherit; 
+  text-align: left;
+}
+// --- Title page ---
+.reveal .slides .titlepage {
+  text-align: center;
+}
+
+// --- Boxed environments ---
+.reveal .titlebox {
+    box-shadow: 0 4px 8px 0 rgba(172, 165, 165, 0.5);
+    background: $headingColor;
+    transition: 0.3s;
+    margin: 20px 20px;
+    color: #F0E1BF;
+}
+
+.reveal .title {
+  color: #F0E1BF;
+}
+
+.theorem {
+    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.2);
+    background: #F0E1BF;
+    transition: 0.3s;
+    text-align: left;
+    margin: 15px 2px;
+    padding: 5px 15px;
+    color: #412F49;
+}
+
+.theoremlike {
+    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.2);
+    background: #F0E1BF;
+    transition: 0.3s;
+    text-align: left;
+    margin: 15px 2px;
+    padding: 5px 15px;
+    color: #412F49;
+}
+
+.definition {
+    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.2);
+    background: #F0E1BF;
+    transition: 0.3s;
+    text-align: left;
+    margin: 15px 2px;
+    padding: 5px 15px;
+    color: #412F49;
+}
+
+.example {
+    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.2);
+    background: #EEEEEE;
+    text-align: left;
+    margin: 15px 2px;
+    padding: 5px 5px;
+    color: #412F49;
+}
+
+div.theorem:before{
+  content: "Theorem.";
+  font-weight: bold;
+  color: $headingColor;
+}
+
+div.theoremlike:before{
+  content: attr(data-type) ".";
+  font-weight: bold;
+  color: $headingColor;
+}
+
+div.definition:before{
+  content: "Definition.";
+  font-weight: bold;
+  color: $headingColor;
+}
+
+div.example:before{
+  content: "Example.";
+  font-weight: bold;
+  color: $headingColor;
+}
+
+.small {
+  font-size: 85%;
+}
+
+.smaller {
+  font-size: 60%;
+}
+
+.tiny {
+  font-size: 50%;
+}
+
+.term {
+  color: $headingColor;
+}
+
+.highlight {
+  color: $linkColor;
+}
+
+.lowlight {
+  color: #B09090;
+}
+
+.equ {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.equgroup {
+  display: flex; 
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.cols {
+  display: flex;
+  margin:0 -15px;
+}
+
+.col{
+  flex: 1;
+  padding:0 15px;
+}
+
+// Change text colors against dark slide backgrounds
+@include dark-bg-text-color(#fff);
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
