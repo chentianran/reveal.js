@@ -14,10 +14,11 @@
 // Override theme settings (see ../template/settings.scss)
 $mainFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
 $mainFontSize: 32px;
-$mainColor: #000;
-$headingFont: 'League Gothic', Impact, sans-serif;
+$mainColor: #0d0709;
+$headingFont: Impact, sans-serif;
+// $headingFont: 'League Gothic', Impact, sans-serif;
 // $headingFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
-$headingColor: #8B3E5D;
+$headingColor: #600f16;
 $headingTextShadow: none;
 $headingTextTransform: none;
 $heading1Size: 2.5em;
@@ -25,12 +26,19 @@ $heading2Size: 1.75em;
 $heading3Size: 1.25em;
 $heading4Size: 1.00em;
 $backgroundColor: #FFFFFF;
-$linkColor: #EE8B73;
+$linkColor: #600f16;
 $linkColorHover: darken( $linkColor, 20% );
 $selectionBackgroundColor: #412F49;
+$boxColor: #d6cdd2;
+$tintColor: #f2e0dc;
+$boxCorner: 8px;
 
 // Vertical spacing between blocks of text
 $blockMargin: 10px;
+
+body {
+  counter-reset: example problem;
+}
 
 .reveal a {
   line-height: 1.2em;
@@ -49,54 +57,60 @@ $blockMargin: 10px;
 
 // --- Boxed environments ---
 .reveal .titlebox {
-    box-shadow: 0 4px 8px 0 rgba(172, 165, 165, 0.5);
+    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.5);
     background: $headingColor;
     transition: 0.3s;
     margin: 20px 20px;
-    color: #F0E1BF;
+    padding: 15px 20px;
+    color: $backgroundColor;
+    border-radius: $boxCorner;
 }
 
 .reveal .title {
-  color: #F0E1BF;
+  color: $backgroundColor;
+}
+
+%boxed {
+  box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.5);
+  transition: 0.3s;
+  text-align: left;
+  margin: 15px 2px;
+  border-radius: $boxCorner;
 }
 
 .theorem {
-    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.2);
-    background: #F0E1BF;
-    transition: 0.3s;
-    text-align: left;
-    margin: 15px 2px;
-    padding: 5px 15px;
-    color: #412F49;
+  @extend %boxed;
+  background: $boxColor;
+  padding: 5px 15px;
+  color: #000000;
 }
 
 .theoremlike {
-    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.2);
-    background: #F0E1BF;
-    transition: 0.3s;
-    text-align: left;
-    margin: 15px 2px;
-    padding: 5px 15px;
-    color: #412F49;
+  @extend %boxed;
+  background: $boxColor;
+  padding: 5px 15px;
+  color: #000000;
 }
 
 .definition {
-    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.2);
-    background: #F0E1BF;
-    transition: 0.3s;
-    text-align: left;
-    margin: 15px 2px;
-    padding: 5px 15px;
-    color: #412F49;
+  @extend %boxed;
+  background: $tintColor;
+  padding: 5px 15px;
+  color: $mainColor;
 }
 
 .example {
-    box-shadow: 0 4px 8px 0 rgba(112, 96, 96, 0.2);
-    background: #EEEEEE;
-    text-align: left;
-    margin: 15px 2px;
-    padding: 5px 5px;
-    color: #412F49;
+  @extend %boxed;
+  background: #EEEEEE;
+  padding: 5px 5px;
+  color: #000000;
+}
+
+.problem {
+  @extend %boxed;
+  background: #EEEEEE;
+  padding: 5px 5px;
+  color: #000000;
 }
 
 div.theorem:before{
@@ -118,7 +132,15 @@ div.definition:before{
 }
 
 div.example:before{
-  content: "Example.";
+  counter-increment: example;
+  content: "Example " counter(example) ".";
+  font-weight: bold;
+  color: $headingColor;
+}
+
+div.problem:before{
+  counter-increment: problem;
+  content: "Problem " counter(problem) ".";
   font-weight: bold;
   color: $headingColor;
 }
